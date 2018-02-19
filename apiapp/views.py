@@ -6,12 +6,12 @@ from apiapp.models import Diary
 from apiapp.serializers import DiarySerializer
 
 class DiaryList(generics.ListCreateAPIView):
-    """Support GET/POST"""
+    """Return a list of diary entries. Support GET/POST."""
     queryset = Diary.objects.all()
     serializer_class = DiarySerializer
 
 
 class DiaryDetail(generics.RetrieveUpdateDestroyAPIView):
-    """Support GET/PUT/DELETE"""
+    """Return the detail of a diary. Support GET/PUT/DELETE"""
     queryset = Diary.objects.all()
     serializer_class = DiarySerializer
