@@ -50,7 +50,7 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # WARNING: csrf_token is disabled here!
-    'apiapp.config.DisableCSRF'
+    'apiapp.config.DisableCSRFMiddleware'
 ]
 
 ROOT_URLCONF = 'server.urls'

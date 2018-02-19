@@ -1,6 +1,6 @@
 from django.utils.deprecation import MiddlewareMixin
 
-class DisableCSRF(MiddlewareMixin, object):
+class DisableCSRFMiddleware(MiddlewareMixin, object):
     """Disable default CSRF protection
 
     To enable CSRF:
