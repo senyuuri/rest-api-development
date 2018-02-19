@@ -21,8 +21,8 @@ from apiapp import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('diary/', views.diary_list),
-    re_path(r'^diary/(?P<pk>[0-9]+)/$', views.diary_detail)
+    path('diary/', views.DiaryList.as_view()),
+    path('diary/<int:pk>/', views.DiaryDetail.as_view())
 ]
 
 urlpatterns = format_suffix_patterns(urlpatterns)
