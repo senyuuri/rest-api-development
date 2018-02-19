@@ -2,58 +2,27 @@
 
 CS5331 Assignment 1 Project Reference Repository
 
+## [Temporary] Development Environemnt Setup
+1. Create a virtualenv and install necessary packages
+```
+> virtualenv -p python3.5 pyenv
+> source pyenv/bin/activate
+> pip install -r requirements.txt
+```
+
+2. Setup django
+```
+> python manage.py migrate
+> python manage.py createsuperuser
+```
+
+3. Run local server
+```
+> python manage.py runserver
+```
+
 ## Instructions
 
-Your objective is to implement a web application that provides the endpoints
-specified here: https://cs5331-assignments.github.io/rest-api-development/.
-
-The project has been packaged in an easy to set-up docker container with the
-skeleton code implemented in Python Flask. You are not restricted in terms of
-which language, web stack, or database you desire to use. However, please note
-that very limited support can be given to those who decide to veer off the
-beaten path.
-
-You may be required to modify the following files/directories:
-
-- Dockerfile - contains the environment setup scripts to ensure a homogenous
-  development environment
-- src/ - contains the front-end code in `html` and the skeleton Flask API code
-  in `service`
-- img/ - contains images used for this README
-
-Assuming you're developing on an Ubuntu 16.04 machine, the quick instructions
-to get up and running are:
-
-```
-# Install Docker
-
-sudo apt-get update
-sudo apt-get install \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    software-properties-common
-curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
-sudo add-apt-repository \
-   "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-   $(lsb_release -cs) \
-   stable"
-sudo apt-get update
-sudo apt-get install docker-ce
-
-# Verify Docker Works
-
-sudo docker run hello-world
-
-# Run the skeleton implementation
-
-sudo ./run.sh
-```
-
-(Docker CE installation instructions are from this
-[link](https://docs.docker.com/install/linux/docker-ce/ubuntu/#install-using-the-repository).)
-
-**Please consult your assignment hand-out for detailed setup information.**
 
 ## Grading
 
