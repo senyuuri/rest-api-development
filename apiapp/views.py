@@ -10,6 +10,7 @@ from apiapp.serializers import (
     UserAuthSerializer, TokenSerializer, DiaryCreateSerializer,
     DiaryModifySerializer)
 from rest_framework.renderers import JSONRenderer
+import uuid
 
 
 @api_view(['GET'])
@@ -73,7 +74,9 @@ def user_auth(request):
     serializer = UserAuthSerializer(data=request.data)
     if serializer.is_valid():
         if serializer.user() is not None:
-            token = UserToken.objects.create(user=serializer.user())
+            token = UserToken.objects.create(
+                user=serializer.user(),
+                token=str(uuid.uuid4()))
             return Response({'status': True,
                              'token': token.token})
     return Response({'status': False})
