@@ -23,4 +23,4 @@ class Profile(models.Model):
 
 class UserToken(models.Model):
     user = models.ForeignKey('auth.user', related_name='token', on_delete=models.CASCADE)
-    token = models.UUIDField(default=uuid.uuid4(), editable=False, primary_key=True)
+    token = models.UUIDField(editable=False, primary_key=True)
