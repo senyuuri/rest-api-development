@@ -81,7 +81,8 @@ def user_auth(request):
                 user=serializer.user(),
                 token=str(uuid.uuid4()))
             return Response({'status': True,
-                             'token': token.token})
+                             'result':{
+                                 'token': token.token}})
     return Response({'status': False})
 
 
@@ -104,10 +105,11 @@ def user_detail(request):
         if user is not None:
             return Response({
                 'status': True,
-                'username': user.username,
-                'fullname': user.profile.fullname,
-                'age': user.profile.age
-                })
+                'result': {
+                    'username': user.username,
+                    'fullname': user.profile.fullname,
+                    'age': user.profile.age
+                }})
     return Response({'status': False})
 
 
@@ -143,7 +145,7 @@ def create_diary(request):
     if serializer.is_valid():
         result = serializer.create()
         if result is not None:
-            return Response({'status': True, 'result': result},
+            return Response({'status': True, 'result': {'id': result}},
                             status=status.HTTP_201_CREATED)
     return Response({'status': False, "error": "Invalid authentication token."})
 
@@ -154,8 +156,8 @@ def delete_diary(request):
     serializer = DiaryModifySerializer(data=request.data)
     if serializer.is_valid():
         result = serializer.delete()
-        if result is not None:
-            return Response({'status': True, 'result': result})
+        if result:
+            return Response({'status': True})
     Response({'status': False, "error": "Invalid authentication token."})
 
 
@@ -167,4 +169,4 @@ def update_diary(request):
         result = serializer.update_permission()
         if result:
             return Response({'status': True})
-    return Response({'status': False})
+    return Response({'status': False, "error": "Invalid authentication token."})
