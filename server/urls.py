@@ -20,7 +20,7 @@ from apiapp import views
 urlpatterns = [
     re_path(r'^$', views.endpoints),
     re_path(r'^meta/heartbeat$', views.heartbeat),
-    re_path(r'^meta/members$', views.user_list),
+    re_path(r'^meta/members$', views.member_list),
     re_path(r'^users/register$', views.user_register),
     re_path(r'^users/authenticate$', views.user_auth),
     re_path(r'^users/expire$', views.token_exp),
