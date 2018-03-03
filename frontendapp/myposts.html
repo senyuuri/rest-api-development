@@ -65,10 +65,10 @@
         $("#footer").load("/footer.html");
 
         if (window.sessionStorage.getItem("auth_token") === null) {
-            document.getElementById("new-post").style.display = "none";
+            window.location.href = "/login.html";
         }
 
-        $.get("http://localhost:8080/diary", function (data) {
+        $.post("http://localhost:8080/diary/", {"token": window.sessionStorage.getItem("auth_token")}, function (data) {
             if (data.status) {
                 data.result.forEach(function (post) {
                     $("#posts").append("<div class='card' style='margin-top: 20px;'>" +
@@ -79,6 +79,9 @@
                         "<div class='card-body'>" +
                         "<h5 class='card-title'>" + encodeURI(post.title) + "</h5>" +
                         "<p class='card-text'>" + encodeURI(post.text) + "</p>" +
+                        "<div class='float-right'>" +
+                        "<button class='btn btn-danger float-right' style='margin-top: 10px; margin-left: 10px' onclick='deletePost(" + encodeURI(post.id) + ")'>Delete</button>" +
+                        "<button class='btn float-right " + (post.public ? "btn-warning" : "btn-success") + "' style='margin-top: 10px;' onclick='changePostPermission(" + encodeURI(post.id) + ", " + post.public + ")'>Make it " + (post.public ? "Private" : "Public") + "</button>" +
                         "</div></div>");
                 });
             }
@@ -95,7 +98,26 @@
         })
         ;
 
-        window.location.href = '/';
+        window.location.href = "/myposts.html";
+    };
+
+    var deletePost = function (id) {
+        $.post("http://localhost:8080/diary/delete/", {
+            "token": window.sessionStorage.getItem("auth_token"),
+            "id": id
+        });
+
+        window.location.href = "/myposts.html";
+    };
+
+    var changePostPermission = function (id, originalPermission) {
+        $.post("http://localhost:8080/diary/permission/", {
+            "token": window.sessionStorage.getItem("auth_token"),
+            "id": id,
+            "public": !originalPermission
+        });
+
+        window.location.href = "/myposts.html";
     };
 </script>
 </body>
