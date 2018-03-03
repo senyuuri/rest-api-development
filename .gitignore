@@ -1,3 +1,15 @@
+# python virtual env
 pyenv/
+
+# python bytecode files
 *.pyc
+
+# database file
 db.sqlite3
+
+# frontend app
+frontendapp/node_modules/
+frontendapp/.idea/
+
+# Mac folder metadata file
+.DS_Store
