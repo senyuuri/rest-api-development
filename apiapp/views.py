@@ -15,7 +15,7 @@ import uuid
 
 @api_view(['GET'])
 @renderer_classes((JSONRenderer,))
-def user_list(request):
+def member_list(request):
     """
     @brief      List fullnames of all users
     """
@@ -23,7 +23,10 @@ def user_list(request):
     serializer = UserSerializer(users, many=True)
     obj = {
         'status': True,
-        'result': list(map((lambda x: x['fullname']), serializer.data))
+        'result': ["Cao Wei",
+                   "Pan Long",
+                   "Zhan Yuli",
+                   "Zhou Chuyu"]
     }
     return Response(obj)
 
