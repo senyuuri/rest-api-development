@@ -2,23 +2,10 @@
 
 CS5331 Assignment 1 Project Reference Repository
 
-## [Temporary] Development Environemnt Setup
-1. Create a virtualenv and install necessary packages
+## Setup
+Make sure you have docker-compose installed. To start the container, simply run:
 ```
-> virtualenv -p python3.5 pyenv
-> source pyenv/bin/activate
-> pip install -r requirements.txt
-```
-
-2. Setup django
-```
-> python manage.py migrate
-> python manage.py createsuperuser
-```
-
-3. Run local server
-```
-> python manage.py runserver
+./run.sh
 ```
 
 ## Instructions

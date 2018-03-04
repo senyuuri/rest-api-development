@@ -1,0 +1,33 @@
+version: '3'
+
+services:  
+  # postgres database
+  db:
+    image: postgres:9.6
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=testpassword
+      - POSTGRES_DB=postgres
+
+  # django web server
+  web:
+    build: .
+    image: django_webapp:latest
+    container_name: cs5331_19_web
+    command: python3 manage.py runserver 0.0.0.0:8000
+    ports:
+      - "8080:8000"
+    depends_on:
+      - db
+
+  # front-end server
+  nginx:
+    image: nginx:latest
+    container_name: cs5331_19_nginx
+    ports:
+      - "80:80"
+    volumes:
+      - ./config/nginx.conf:/etc/nginx/nginx.conf
+      - ./frontendapp:/frontendapp
+    depends_on:
+      - web
