@@ -1,0 +1,24 @@
+version: '3'
+
+services:  
+  # PostgreSQL database
+  db:
+    image: postgres:9.6
+    hostname: db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=testpassword
+      - POSTGRES_DB=postgres
+    ports:
+      - "5432:5432"
+
+  # Django web server
+  web:
+    build: .
+    command: python3 manage.py runserver 8000
+    volumes:
+      - .:/code
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db

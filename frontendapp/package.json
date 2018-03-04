@@ -4,7 +4,8 @@
   "description": "Frontend app for secret diary.",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "http-server ."
   },
   "author": "",
   "license": "ISC",
@@ -12,5 +13,8 @@
     "bootstrap": "^4.0.0",
     "jquery": "^3.3.1",
     "popper.js": "^1.12.9"
+  },
+  "devDependencies": {
+    "http-server": "^0.11.1"
   }
 }
