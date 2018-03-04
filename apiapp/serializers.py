@@ -119,12 +119,12 @@ class DiaryCreateSerializer(serializers.ModelSerializer):
 
 class DiaryModifySerializer(serializers.ModelSerializer):
     id = serializers.IntegerField()
-    private = serializers.BooleanField(default=True)
+    public = serializers.BooleanField(default=True)
     token = serializers.CharField()
 
     class Meta:
         model = UserToken
-        fields = ['id', 'token', 'private']
+        fields = ['id', 'token', 'public']
 
     def validate_token_exists_and_ownership(self, data):
         serializer = TokenSerializer(data=data['token'])
@@ -143,7 +143,7 @@ class DiaryModifySerializer(serializers.ModelSerializer):
             instance = UserToken.objects.get(token=self.validated_data['token'])
             user = instance.user
         except ObjectDoesNotExist as e:
-            return None
+            return False
         diary = Diary.objects.filter(author=user).get(id=self.validated_data['id'])
         diary.delete()
         return True
@@ -154,7 +154,7 @@ class DiaryModifySerializer(serializers.ModelSerializer):
             instance = UserToken.objects.get(token=self.validated_data['token'])
             user = instance.user
             diary = Diary.objects.filter(author=user).get(id=self.validated_data['id'])
-            diary.public = not self.validated_data['private']
+            diary.public = self.validated_data['public']
             diary.save()
             return True
         except ObjectDoesNotExist as e:
