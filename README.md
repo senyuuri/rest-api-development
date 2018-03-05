@@ -37,10 +37,29 @@ If a response is received, you're good to go.
 
 ## Screenshots
 
-Please replace the example screenshots with screenshots of your completed
-project. Feel free to include more than one.
+![screenshot_home](./img/screenshot_home.png)
 
-![Sample Screenshot](./img/samplescreenshot.png)
+Screenshot 1: Home screen
+
+![screenshot_home](./img/screenshot_home_loggedin.png)
+
+Screenshot 2: Home screen(logged in)
+
+![screenshot_home](./img/screenshot_login.png)
+
+Screenshot 3: Login 
+
+
+
+![screenshot_home](./img/screenshot_register.png)
+
+Screenshot 4: Register 
+
+![screenshot_home](./img/screenshot_members.png)
+
+Screenshot 5: About page
+
+
 
 ## Administration and Evaluation
 
@@ -63,6 +82,8 @@ Http: serve web content using http may expose sensitive user information and mak
 
 SQL injection: we access the database only through Django's object-relational mapper(ORM) so as to ensure all queries are properly sanitized. No `raw()` SQL used.
 
+XSS: user input is sanitized at the front-end.
+
 Clickjacking:  we include `django.middleware.clickjacking.XFrameOptionsMiddleware` to prevent clickjacking.
 
 #### Question 3: Are there any improvements you would make to the API specification to improve the security of the web application?
@@ -77,8 +98,6 @@ The API should include a token auto-expiration field together with a token renew
 #### Question 5: Is your web application vulnerable? If yes, how and why? If not, what measures did you take to secure it?
 
 CSRF: django by default have `CsrfViewMiddleware` enabled to prevent CSRF. We have disabled it to comply with the API requirement. 
-
-XSS: the web app is susceptible to XSS as we did not sanitize user input at the front-end. 
 
 #### Feedback: Is there any other feedback you would like to give?
 
