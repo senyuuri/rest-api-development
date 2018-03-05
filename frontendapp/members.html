@@ -11,8 +11,8 @@
 <body>
 <div id="navbar"></div>
 
-<p style="margin-top: 20px; padding-top: 56px;">CS5331 team members:</p>
-<ul id="memberList" style="margin-bottom: 76px"></ul>
+<p class="offset-md-4 col-md-4 text-center" style="margin-top: 20px; padding-top: 56px;">CS5331 team members:</p>
+<ul class="offset-md-4 col-md-4 text-center" id="memberList" style="margin-bottom: 76px; list-style-type: none;"></ul>
 
 <div id="footer"></div>
 <script type="text/javascript" src="/node_modules/jquery/dist/jquery.min.js"></script>
@@ -20,8 +20,6 @@
 <script type="text/javascript" src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/index.js"></script>
 <script type="text/javascript">
-
-
     $(function () {
         $("#navbar").load("/navbar.html");
         $("#footer").load("/footer.html");
