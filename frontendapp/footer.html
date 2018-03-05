@@ -3,7 +3,19 @@
         <div class="container-fluid">
         <span class="text-muted">
         Secret Diary made with love by <a href="/members.html">CS5331 team
-            19</a></span>
+            19</a></span><span id="status"></span>
         </div>
     </div>
 </footer>
+
+<script type="text/javascript">
+    (function ($) { //separate scope to keep everything "private" for each module
+        $(function () {
+            var status = document.getElementById("status");
+
+            $.get("http://localhost:8080/meta/heartbeat", function (response) {
+                status.textContent = ", Server status: " + (response.status ? "connected" : "disconnected");
+            });
+        });
+    })(jQuery);
+</script>
