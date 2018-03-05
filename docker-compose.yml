@@ -14,9 +14,9 @@ services:
     build: .
     image: django_webapp:latest
     container_name: cs5331_19_web
-    command: python3 manage.py runserver 0.0.0.0:8000
+    command: ["./wait-for-it.sh", "db:5432", "--", "python", "manage.py", "runserver", "0.0.0.0:8000"]
     ports:
-      - "8080:8000"
+      - "8080:8080"
     depends_on:
       - db
 
