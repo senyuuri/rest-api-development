@@ -59,6 +59,7 @@
 <script type="text/javascript" src="/node_modules/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript" src="/node_modules/popper.js/dist/umd/popper.min.js"></script>
 <script type="text/javascript" src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/index.js"></script>
 <script type="text/javascript">
     $(function () {
         $("#navbar").load("/navbar.html");
@@ -73,15 +74,15 @@
                 data.result.forEach(function (post) {
                     $("#posts").append("<div class='card' style='margin-top: 20px;'>" +
                         "<div class='card-header'>" +
-                        "<div style='display: inline;'>" + encodeURI(post.author) + "</div>" +
-                        "<p class='float-right'>" + encodeURI(post.publish_date) + "</p>" +
+                        "<div style='display: inline;'>" + sanitize(post.author) + "</div>" +
+                        "<p class='float-right'>" + sanitize(post.publish_date) + "</p>" +
                         "</div>" +
                         "<div class='card-body'>" +
-                        "<h5 class='card-title'>" + encodeURI(post.title) + "</h5>" +
-                        "<p class='card-text'>" + encodeURI(post.text) + "</p>" +
+                        "<h5 class='card-title'>" + sanitize(post.title) + "</h5>" +
+                        "<p class='card-text'>" + sanitize(post.text) + "</p>" +
                         "<div class='float-right'>" +
-                        "<button class='btn btn-danger float-right' style='margin-top: 10px; margin-left: 10px' onclick='deletePost(" + encodeURI(post.id) + ")'>Delete</button>" +
-                        "<button class='btn float-right " + (post.public ? "btn-warning" : "btn-success") + "' style='margin-top: 10px;' onclick='changePostPermission(" + encodeURI(post.id) + ", " + post.public + ")'>Make it " + (post.public ? "Private" : "Public") + "</button>" +
+                        "<button class='btn btn-danger float-right' style='margin-top: 10px; margin-left: 10px' onclick='deletePost(" + post.id + ")'>Delete</button>" +
+                        "<button class='btn float-right " + (post.public ? "btn-warning" : "btn-success") + "' style='margin-top: 10px;' onclick='changePostPermission(" + post.id + ", " + post.public + ")'>Make it " + (post.public ? "Private" : "Public") + "</button>" +
                         "</div></div>");
                 });
             }

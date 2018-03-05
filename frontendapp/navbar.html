@@ -9,7 +9,8 @@
                     onclick="window.location.href='/login.html';">Login
             </button>
             <button id="btn_logout" class="btn btn-danger" style="display: none; margin-left: 20px;" type="button"
-                    onclick="window.sessionStorage.removeItem('auth_token'); window.location.href='/';">Logout
+                    onclick="$.post('http://localhost:8080/users/expire', {'token': window.sessionStorage.removeItem('auth_token')}); window.sessionStorage.removeItem('auth_token'); window.location.href='/';">
+                Logout
             </button>
             <button id="btn_register" class="btn btn-primary" style="display: none; margin-left: 20px;" type="button"
                     onclick="window.location.href='/register.html'">

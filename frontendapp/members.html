@@ -18,15 +18,18 @@
 <script type="text/javascript" src="/node_modules/jquery/dist/jquery.min.js"></script>
 <script type="text/javascript" src="/node_modules/popper.js/dist/umd/popper.min.js"></script>
 <script type="text/javascript" src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+<script type="text/javascript" src="/index.js"></script>
 <script type="text/javascript">
+
+
     $(function () {
         $("#navbar").load("/navbar.html");
         $("#footer").load("/footer.html");
 
-        $.get("http://localhost:8080/meta/members",function (data) {
+        $.get("http://localhost:8080/meta/members", function (data) {
             if (data.status) {
                 data.result.forEach(function (member) {
-                    $("#memberList").append("<li>"+encodeURI(member)+"</li>");
+                    $("#memberList").append("<li>" + sanitize(member) + "</li>");
                 });
             }
         });
