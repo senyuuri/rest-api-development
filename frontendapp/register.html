@@ -57,8 +57,7 @@
                 "age": document.getElementById("age").value
             }, function (result) {
                 if (result.status) {
-                    window.sessionStorage.setItem("auth_token", result.token);
-                    location.href = "/";
+                    location.href = "/login.html";
                 }
             });
         })

@@ -29,6 +29,10 @@
 <script type="text/javascript" src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
 <script type="text/javascript">
     $(function () {
+        if (window.sessionStorage.getItem("auth_token") !== null) {
+            location.href = "/";
+        }
+
         $("#navbar").load("/navbar.html");
         $("#footer").load("/footer.html");
 
@@ -40,7 +44,7 @@
                 "password": document.getElementById("password").value
             }, function (result) {
                 if (result.status) {
-                    window.sessionStorage.setItem("auth_token", result.token);
+                    window.sessionStorage.setItem("auth_token", result.result.token);
                     location.href = "/";
                 }
             });
