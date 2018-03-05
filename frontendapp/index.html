@@ -29,7 +29,7 @@
                 </div>
                 <textarea class="form-control" id="post-text"></textarea>
             </div>
-
+            <div class="float-left" style="margin-top: 10px;" id="selfinfo"></div>
             <div class="float-right">
                 <div class="btn-group" style="margin-top: 10px;">
                     <button type="button" class="btn btn-success dropdown-toggle" data-toggle="dropdown"
@@ -67,6 +67,12 @@
 
         if (window.sessionStorage.getItem("auth_token") === null) {
             document.getElementById("new-post").style.display = "none";
+        } else {
+            $.post("http://localhost:8080/users", {"token": window.sessionStorage.getItem("auth_token")}, function (response) {
+                if (response.status) {
+                    document.getElementById("selfinfo").textContent = "by " + response.result.fullname + ", age " + response.result.age;
+                }
+            });
         }
 
         $.get("http://localhost:8080/diary", function (data) {
